@@ -1,5 +1,7 @@
 version 1.0
 
+# Modified by Wendy Wong to the latest version of Strelka and outputs gvcfs
+#
 # Copyright (c) 2017 Leiden University Medical Center
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,6 +22,7 @@ version 1.0
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+
 import "common.wdl" as common
 
 task Germline {
@@ -36,7 +39,7 @@ task Germline {
 
         Int cores = 1
         Int memoryGb = 4
-        String dockerImage = "quay.io/biocontainers/strelka:2.9.7--0"
+        String dockerImage = "quay.io/biocontainers/strelka:2.9.10--0"
     }
 
     command {
@@ -57,6 +60,8 @@ task Germline {
     output {
         File variants = runDir + "/results/variants/variants.vcf.gz"
         File variantsIndex = runDir + "/results/variants/variants.vcf.gz.tbi"
+        File gvcf = runDir + "/results/variants/genome.S1.vcf.gz"
+        File gvcfIndex = runDir + "/results/variants/genome.S1.vcf.gz.tbi"
     }
 
     runtime {
@@ -100,7 +105,7 @@ task Somatic {
 
         Int cores = 1
         Int memoryGb = 4
-        String dockerImage = "quay.io/biocontainers/strelka:2.9.7--0"
+        String dockerImage = "quay.io/biocontainers/strelka:2.9.10--0"
 
         File? doNotDefineThis #FIXME
     }
