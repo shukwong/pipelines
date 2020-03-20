@@ -18,7 +18,7 @@ workflow callGermlineVariants {
   File? callRegionsIndex
   Boolean exome = false
   Boolean rna = false
-  Array[File]+ foo
+  Array[File]+? foo
 
   scatter (sample in inputSamples) {
      call strelka.GermlineGVCF {
@@ -29,14 +29,16 @@ workflow callGermlineVariants {
              referenceFasta = referenceFasta,
              referenceFastaFai = referenceFastaFai,
              exome = exome,
-             rna = rna
+             rna = rna,
+             sampleName = sample[0]
      }
 
       call hello {
         input:
           SAMPLE = sample[1]
-      }
-  }  
+      } 
+
+  }
 }
 
 task hello {

@@ -180,9 +180,10 @@ task GermlineGVCF {
         File? callRegionsIndex
         Boolean exome = false
         Boolean rna = false
+        String sampleName
 
-        Int cores = 1
-        Int memoryGb = 4
+        Int cores = 4
+        Int memoryGb = 16 
         String dockerImage = "quay.io/biocontainers/strelka:2.9.10--0"
     
 
@@ -199,13 +200,16 @@ task GermlineGVCF {
         -m local \
         -j ${cores} \
         -g ${memoryGb}
+
+        cp ${runDir}/results/variants/genome.S1.vcf.gz ${runDir}/results/variants/${sampleName}.genome.vcf.gz
+        cp ${runDir}/results/variants/genome.S1.vcf.gz.tbi ${runDir}/results/variants/${sampleName}.genome.vcf.gz.tbi
     }
 
     output {
         File variants = runDir + "/results/variants/variants.vcf.gz"
         File variantsIndex = runDir + "/results/variants/variants.vcf.gz.tbi"
-        File gvcf = runDir + "/results/variants/genome.S1.vcf.gz"
-        File gvcfIndex = runDir + "/results/variants/genome.S1.vcf.gz.tbi"
+        File gvcf = runDir + "/results/variants/" + sampleName + ".vcf.gz"
+        File gvcfIndex = runDir + "/results/variants/" + sampleName + ".vcf.gz.tbi"
     }
 
     runtime {
