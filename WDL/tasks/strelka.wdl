@@ -22,6 +22,8 @@ version 1.0
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+#TO DO
+#change sample name, otherwise it's extracted from @RG'
 
 import "common.wdl" as common
 
