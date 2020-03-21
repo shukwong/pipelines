@@ -1,6 +1,6 @@
 ################## BASE IMAGE ######################
 
-FROM biocontainers/biocontainers:v1.0.0_cv4
+FROM biocontainers/biocontainers:v1.1.0_cv2
 
 ################## METADATA ######################
 
