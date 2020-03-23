@@ -22,6 +22,9 @@ MAINTAINER Wendy Wong <wendy.wong@coherentlogic.com>
 
 ################## INSTALLATION ######################
 
-RUN conda update conda
-RUN conda install -y -c bioconda  octopus boost=1.67.0
-WORKDIR /data/
+WORKDIR /tmp/
+
+RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh &&  bash Miniconda3-latest-Linux-x86_64.sh -b -p venv &&  ./venv/bin/conda install -c conda-forge -c bioconda octopus
+
+ENV PATH="/tmp/venv/bin/:${PATH}"
+
