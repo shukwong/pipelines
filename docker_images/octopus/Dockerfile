@@ -22,5 +22,6 @@ MAINTAINER Wendy Wong <wendy.wong@coherentlogic.com>
 
 ################## INSTALLATION ######################
 
+RUN conda update conda
 RUN conda install -y -c bioconda  octopus boost=1.67.0
 WORKDIR /data/
