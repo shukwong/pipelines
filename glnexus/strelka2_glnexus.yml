@@ -1,3 +1,4 @@
+# Custom configuration for joint calling DeepVariant whole genome sequencing gVCFs.
 unifier_config:
     drop_filtered: false
     min_allele_copy_number: 1
@@ -18,7 +19,39 @@ genotyper_config:
     squeeze: false
     output_format: BCF
     liftover_fields:
-    - {orig_names: [MIN_DP, DP, DPI], name: DP, description: "##FORMAT=<ID=DP,Number=1,Type=Integer,Description=\"Approximate read depth (reads with MQ=255 or with bad mates are filtered)\">", type: int, number: basic, default_type: missing, count: 1, combi_method: min, ignore_non_variants: true}
-    - {orig_names: [AD], name: AD, description: "##FORMAT=<ID=AD,Number=.,Type=Integer,Description=\"Allelic depths for the ref and alt alleles in the order listed\">", type: int, number: alleles, default_type: zero, count: 0, combi_method: min, ignore_non_variants: true}
-    - {orig_names: [GQ], name: GQ, description: "##FORMAT=<ID=GQ,Number=1,Type=Integer,Description=\"Genotype Quality\">", type: float, number: basic, default_type: missing, count: 1, combi_method: min, ignore_non_variants: true}
-    - {orig_names: [FILTER], name: FT, description: "##FORMAT=<ID=FT,Number=1,Type=String,Description=\"FILTER field from sample gVCF\">", type: string, number: basic, default_type: missing, count: 1, combi_method: missing, ignore_non_variants: true}
+        - orig_names: [MIN_DP, DP, DPI]
+          name: DP
+          description: '##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth (reads with MQ=255 or with bad mates are filtered)">'
+          type: int
+          number: basic
+          default_type: missing
+          count: 1
+          combi_method: min
+          ignore_non_variants: true
+        - orig_names: [AD]
+          name: AD
+          description: '##FORMAT=<ID=AD,Number=.,Type=Integer,Description="Allelic depths for the ref and alt alleles in the order listed">'
+          type: int
+          number: alleles
+          combi_method: min
+          default_type: zero
+          count: 0
+          ignore_non_variants: true
+        - orig_names: [GQ]
+          name: GQ
+          description: '##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">'
+          type: int
+          number: basic
+          default_type: missing
+          count: 1
+          combi_method: min
+          ignore_non_variants: true
+        - orig_names: [FILTER]
+          name: FT
+          description: '##FORMAT=<ID=FT,Number=1,Type=String,Description="FILTER field from sample gVCF">'
+          type: string
+          number: basic
+          default_type: missing
+          combi_method: missing
+          count: 1
+          ignore_non_variants: true
