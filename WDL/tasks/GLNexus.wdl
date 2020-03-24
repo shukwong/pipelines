@@ -30,22 +30,20 @@ task GLnexus {
 
     command {
         set -ex -o pipefail
-        export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.1
-        numactl --interleave=all glnexus_cli --config "${CONFIG}"  "${write_lines(GVCFS)}" | bcftools view - | bgzip -@ 4 -c > "${OUTPUT_NAME}.vcf.gz"
+        glnexus_cli --config "${CONFIG}"  "${write_lines(GVCFS)}"  > "${OUTPUT_NAME}.bcf"
     }
 
 
     runtime {
-        docker: "quay.io/mlin/glnexus:v0.6.0-0-ge7bbd0c"
+        docker: "quay.io/mlin/glnexus:v1.2.2"
         cpu: "8"
     }
 
     output {
-        File pvcf_gz = "~{OUTPUT_NAME}.vcf.gz"
+        File merged_bcf = "${OUTPUT_NAME}.bcf"
     }
 
     parameter_meta {
-        runDir: {description: "The directory to use as run/output directory.", category: "common"}
         cores: {description: "The number of cores to use.", category: "advanced"}
         memoryGb: {description: "The amount of memory this job will use in Gigabytes.", category: "advanced"}
     }
