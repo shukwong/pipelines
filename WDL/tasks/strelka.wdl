@@ -208,8 +208,8 @@ task GermlineGVCF {
     output {
         File variants = runDir + "/results/variants/variants.vcf.gz"
         File variantsIndex = runDir + "/results/variants/variants.vcf.gz.tbi"
-        File gvcf = runDir + "/results/variants/" + sampleName + ".vcf.gz"
-        File gvcfIndex = runDir + "/results/variants/" + sampleName + ".vcf.gz.tbi"
+        File gvcf = runDir + "/results/variants/" + sampleName + ".genome.vcf.gz"
+        File gvcfIndex = runDir + "/results/variants/" + sampleName + ".genome.vcf.gz.tbi"
     }
 
     runtime {
