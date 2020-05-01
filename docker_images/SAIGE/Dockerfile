@@ -30,9 +30,9 @@ RUN apt install wget
 
 RUN apt-get install -y libxml2-dev
 
-RUN echo "update 0.36.3.2 and update SKAT3" &&  wget https://github.com/weizhouUMICH/SAIGE/archive/master.zip && \
-	unzip master.zip && \
-	mv SAIGE-master SAIGE
+RUN echo "update 0.36.3.2 and update SKAT3" &&  wget https://github.com/weizhouUMICH/SAIGE/archive/0.36.2.zip && \
+	unzip 0.36.2.zip && \
+	mv SAIGE-0.36.2 SAIGE
 RUN echo "update3"
 
 RUN cp SAIGE/extdata/install_packages.R  /usr/local/bin/
