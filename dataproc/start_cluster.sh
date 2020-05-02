@@ -1,0 +1,12 @@
+gcloud beta dataproc clusters create cluster-test \
+--enable-component-gateway --bucket confluence_test \
+--region us-east4 --subnet default \
+--zone us-east4-a --master-machine-type n1-standard-2 \
+--master-boot-disk-size 500 --num-workers 2 \
+--worker-machine-type n1-standard-4 \
+--worker-boot-disk-size 500 --image-version 1.5-debian10 \
+--properties spark:spark.hadoop.io.compression.codecs=io.projectglow.sql.util.BGZFCodec \
+--properties spark:spark.jars.packages='io.projectglow:glow_2.12:0.3.0' \
+--initialization-actions gs://confluence_test/scripts/cluster_init.sh \
+--optional-components ANACONDA,JUPYTER \
+--project nih-nci-dceg-episphere-dev
