@@ -12,6 +12,8 @@ wget -nv https://www.well.ox.ac.uk/~gav/resources/qctool_v2.0.6-Ubuntu16.04-x86_
 tar -xzvf qctool_v2.0.6-Ubuntu16.04-x86_64.tgz
 cp ./qctool_v2.0.6-Ubuntu16.04-x86_64/qctool /usr/local/bin/
 
+
+
 # install SAIGE
 # Install SKAT for SAIGE-GENE
 sudo apt-get -y install libboost-all-dev autoconf

@@ -4,10 +4,11 @@ gcloud beta dataproc clusters create cluster-test \
 --zone us-east4-a --master-machine-type n1-standard-4 \
 --master-boot-disk-size 500 --num-workers 2 \
 --worker-machine-type n1-standard-8 \
---worker-boot-disk-size 1000 --image-version 1.5-debian10 \
+--worker-boot-disk-size 1000 --image-version 1.5-ubuntu18  \
 --properties spark:spark.hadoop.io.compression.codecs=io.projectglow.sql.util.BGZFCodec \
 --properties spark:spark.yarn.executor.memoryOverhead=2048 \
 --properties spark:spark.jars.packages='io.projectglow:glow_2.12:0.3.0' \
---initialization-actions gs://confluence_test/scripts/cluster_init.sh \
+--initialization-actions gs://confluence_test/scripts/cluster_init_withSAIGE.sh \
 --optional-components ANACONDA,JUPYTER,ZEPPELIN \
---project nih-nci-dceg-episphere-dev
+--project nih-nci-dceg-episphere-dev \
+--initialization-action-timeout 30m 
