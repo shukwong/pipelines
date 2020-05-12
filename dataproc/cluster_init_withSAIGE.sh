@@ -44,3 +44,5 @@ autoconf
 make
 make install
 
+#create box mount
+mkdir /mnt/box

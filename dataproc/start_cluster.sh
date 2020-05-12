@@ -5,6 +5,7 @@ gcloud beta dataproc clusters create cluster-test \
 --master-boot-disk-size 500 --num-workers 2 \
 --worker-machine-type n1-standard-8 \
 --worker-boot-disk-size 1000 --image-version 1.5-ubuntu18  \
+--num-worker-local-ssds 1 \
 --properties spark:spark.hadoop.io.compression.codecs=io.projectglow.sql.util.BGZFCodec \
 --properties spark:spark.yarn.executor.memoryOverhead=2048 \
 --properties spark:spark.jars.packages='io.projectglow:glow_2.12:0.3.0' \
