@@ -1,4 +1,4 @@
-FROM amd64/alpine
+FROM amd64/ubuntu
 
 ENV RCLONE_VER=1.49.5 \
     BUILD_DATE=20191024T205553 \
