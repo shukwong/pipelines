@@ -1,20 +1,29 @@
-FROM golang AS builder
+FROM amd64/alpine
 
-COPY . /go/src/github.com/rclone/rclone/
-WORKDIR /go/src/github.com/rclone/rclone/
+ENV RCLONE_VER=1.49.5 \
+    BUILD_DATE=20191024T205553 \
+    ARCH=amd64 \
+    SUBCMD="" \
+    CONFIG="--config /config/rclone.conf" \
+    PARAMS=""
 
-RUN make quicktest
-RUN \
-  CGO_ENABLED=0 \
-  make
-RUN ./rclone version
-
-# Begin final image
-FROM alpine:latest
-
-RUN apk --no-cache add ca-certificates fuse
-
-COPY --from=builder /go/src/github.com/rclone/rclone/rclone /usr/local/bin/
+LABEL build_version="Version:- ${RCLONE_VER} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="Lucas Halbert <lhalbert@lhalbert.xyz>"
+MAINTAINER Lucas Halbert <lhalbert@lhalbert.xyz>
 
 
-WORKDIR /data
+RUN apk add --no-cache --update ca-certificates fuse fuse-dev unzip curl mdocml-apropos curl-doc && \
+    curl -O https://downloads.rclone.org/v${RCLONE_VER}/rclone-v${RCLONE_VER}-linux-${ARCH}.zip && \
+    unzip rclone-v${RCLONE_VER}-linux-${ARCH}.zip && \
+    cd rclone-*-linux-${ARCH} && \
+    cp rclone /usr/bin/ && \
+    chown root:root /usr/bin/rclone && \
+    chmod 755 /usr/bin/rclone && \
+    mkdir -p /usr/share/man/man1 && \
+    cp rclone.1 /usr/share/man/man1/ && \
+    makewhatis /usr/share/man && \
+    apk del --purge unzip curl && \
+    cd ../ && \
+    rm -f rclone-v${RCLONE_VER}-linux-${ARCH}.zip && \
+    rm -r rclone-*-linux-${ARCH}
+
