@@ -12,3 +12,5 @@ RUN apt-get update && \
     curl -O https://downloads.rclone.org/v1.51.0/rclone-v1.51.0-linux-amd64.zip && \
     unzip rclone-v1.51.0-linux-amd64.zip && \
     cp ./rclone-v1.51.0-linux-amd64/rclone /usr/local/bin/
+
+ENV PATH="/usr/local/bin/:${PATH}"
