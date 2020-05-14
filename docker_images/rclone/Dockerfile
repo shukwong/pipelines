@@ -1,4 +1,4 @@
-FROM unbuntu
+FROM amd64/ubuntu
 
 
 MAINTAINER wendy wong
