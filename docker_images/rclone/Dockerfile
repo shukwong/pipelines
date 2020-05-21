@@ -1,20 +1,16 @@
-FROM golang AS builder
-
-COPY . /go/src/github.com/rclone/rclone/
-WORKDIR /go/src/github.com/rclone/rclone/
-
-RUN make quicktest
-RUN \
-  CGO_ENABLED=0 \
-  make
-RUN ./rclone version
-
-# Begin final image
-FROM alpine:latest
-
-RUN apk --no-cache add ca-certificates fuse
-
-COPY --from=builder /go/src/github.com/rclone/rclone/rclone /usr/local/bin/
+FROM ubuntu:16.04
 
 
-WORKDIR /data
+MAINTAINER wendy wong
+
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
+
+RUN apt-get update && \
+    apt-get install curl unzip --yes && \
+    apt-get clean && \
+    curl -O https://downloads.rclone.org/v1.51.0/rclone-v1.51.0-linux-amd64.zip && \
+    unzip rclone-v1.51.0-linux-amd64.zip && \
+    cp ./rclone-v1.51.0-linux-amd64/rclone /usr/local/bin/
+
+ENV PATH="/usr/local/bin/:${PATH}"
