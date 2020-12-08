@@ -1,0 +1,3 @@
+This is a docker file for exIBD from Akey Lab at Princeton University (https://akeylab.princeton.edu/downloads.html)
+To build the docker image for exIBD, you will have to download the exIBD package from https://drive.google.com/open?id=0B9Pc7_zItMCVMHRraThsUXU0ODQ and put it in the same folder as the Dockerfile. 
+The files needed to run exIBD are under /tmp/bin/. The documentation is at /tmp/doc/ExIBD_v1.0.pdf 
