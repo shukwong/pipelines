@@ -13,10 +13,10 @@ RUN apt-get update \
 	&& apt-get install -y openjdk-8-jre \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN wget https://github.com/broadinstitute/gatk/releases/download/4.1.9.0/gatk-4.1.9.0.zip -O /tmp/gatk-4.1.9.0.zip\
-	&& unzip /tmp/gatk-4.1.9.0.zip -d /opt/ \
-	&& rm /tmp/gatk-4.1.9.0.zip -f \
-	&& cd /opt/gatk-4.1.9.0 \
+RUN wget https://github.com/broadinstitute/gatk/releases/download/4.0.11.0/gatk-4.0.11.0.zip -O /tmp/gatk-4.0.11.0.zip\
+	&& unzip /tmp/gatk-4.0.11.0.zip -d /opt/ \
+	&& rm /tmp/gatk-4.0.11.0.zip -f \
+	&& cd /opt/gatk-4.0.11.0 \
 	&& ./gatk --list
 
-ENV PATH="/opt/gatk-4.1.9.0/:${PATH}"
+ENV PATH="/opt/gatk-4.0.11.0/:${PATH}"
