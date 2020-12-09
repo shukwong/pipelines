@@ -26,3 +26,5 @@ RUN conda config --add channels bioconda
 RUN conda config --add channels conda-forge
 RUN conda install tabix
 RUN conda install bcftools
+RUN conda install samtools
+
