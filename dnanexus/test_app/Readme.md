@@ -8,10 +8,10 @@ For more information about how to run or modify it, see
 https://documentation.dnanexus.com/.
 <!-- /dx-header -->
 
-<!-- This is for testing building the RStudio + GWAS tools environment on DNANexus  -->
+<!--SECTION: Description -->
+This is for testing building the RStudio + GWAS tools environment on DNANexus  
 
-<!--
-TODO: 
+<!--SECTION: TODO: -->
 - Figure out how to mount multiple projects
 - Convert the applet into an app
--->
+
