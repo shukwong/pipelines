@@ -13,7 +13,7 @@
   "runSpec": {
     "timeoutPolicy": {
       "*": {
-        "hours": 48
+        "hours": 8
       }
     },
     "interpreter": "bash",
@@ -26,7 +26,8 @@
     "network": [
       "*"
     ],
-    "project": "CONTRIBUTE"
+    "project": "CONTRIBUTE",
+    "allProjects": "VIEW"
   },
   "regionalOptions": {
     "aws:eu-central-1": {
