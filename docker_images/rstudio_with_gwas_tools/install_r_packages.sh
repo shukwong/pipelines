@@ -5,6 +5,9 @@
 ## build ARGs
 NCPUS=${NCPUS:-1}
 
+# Override CRAN to a public mirror that should be reachable
+ENV CRAN=https://cloud.r-project.org
+
 set -e
 apt-get update -qq && apt-get -y --no-install-recommends install \
     libxml2-dev \
@@ -43,7 +46,14 @@ install2.r --error --skipinstalled -r $CRAN -n $NCPUS \
 
 ## additional packages
 install2.r --error --skipinstalled -r $CRAN -n $NCPUS \
-    qqman
+    qqman \
+    data.table \
+    ggplot2 \
+    RColorBrewer \
+    ggrepel \
+    optparse \
+    ggthemes \
+    plotrix
 
 
 ## a bridge to far? -- brings in another 60 packages
