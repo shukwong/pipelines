@@ -53,7 +53,8 @@ install2.r --error --skipinstalled -r $CRAN -n $NCPUS \
     ggrepel \
     optparse \
     ggthemes \
-    plotrix
+    plotrix \
+    R.utils
 
 
 ## a bridge to far? -- brings in another 60 packages
